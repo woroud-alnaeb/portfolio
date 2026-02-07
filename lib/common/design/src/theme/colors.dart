@@ -15,7 +15,8 @@ abstract class AppColors {
   static const Color darkSurface = Color(0xFF1A1F3D);
   static const Color darkCard = Color(0xFF252A4A);
   static const Color darkText = Color(0xFFFFFFFF);
-  static const Color darkTextSecondary = Color(0xFF8B8FA3);
+  static const Color darkTextSecondary =
+      Color(0xFFB8BDD1); // Brighter for visibility
   static const Color darkDivider = Color(0xFF2A2F4F);
 
   // === Light Theme Colors ===
