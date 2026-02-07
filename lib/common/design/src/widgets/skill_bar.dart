@@ -161,7 +161,10 @@ class SkillChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chipColor = color ?? AppColors.primaryPurple;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    // Use brighter color in dark mode for better visibility
+    final chipColor =
+        color ?? (isDark ? AppColors.chipPurple : AppColors.primaryPurple);
 
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -169,9 +172,9 @@ class SkillChip extends StatelessWidget {
         vertical: LayoutConstrains.s2,
       ),
       decoration: BoxDecoration(
-        color: chipColor.withOpacity(0.1),
+        color: chipColor.withOpacity(0.15),
         borderRadius: BorderRadius.circular(PRadius.chip),
-        border: Border.all(color: chipColor.withOpacity(0.3)),
+        border: Border.all(color: chipColor.withOpacity(0.4)),
       ),
       child: Text(
         name,

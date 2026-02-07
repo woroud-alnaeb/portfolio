@@ -357,14 +357,16 @@ class _FeaturedProjectCard extends StatelessWidget {
             vertical: LayoutConstrains.s1,
           ),
           decoration: BoxDecoration(
-            color: AppColors.primaryPurple.withOpacity(0.1),
+            color: (isDark ? AppColors.chipPurple : AppColors.primaryPurple)
+                .withOpacity(0.15),
             borderRadius: BorderRadius.circular(PRadius.chip),
           ),
           child: Text(
             project.category,
             style: AppTypo.labelSmall(
               context,
-            ).copyWith(color: AppColors.primaryPurple),
+            ).copyWith(
+                color: isDark ? AppColors.chipPurple : AppColors.primaryPurple),
           ),
         ),
         const SizedBox(height: LayoutConstrains.s3),
@@ -713,7 +715,7 @@ class _LinkButtonState extends State<_LinkButton> {
               widget.icon,
               size: 18,
               color:
-                  _isHovered ? AppColors.primaryCyan : AppColors.primaryPurple,
+                  _isHovered ? AppColors.primaryPurple : AppColors.primaryCyan,
             ),
           ),
         ),

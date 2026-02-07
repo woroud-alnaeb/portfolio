@@ -14,7 +14,8 @@ class PersonalInfo {
   static const String location = 'Dubai, UAE';
   static const String email = 'woroud.alnaeb@gmail.com';
   static const String phone = '+971558867210';
-  static const String availability = 'Available for Remote Opportunities';
+  static const String availability =
+      'Available for Remote Opportunities';
   static const String profileImage = 'assets/images/profile.jpg';
   static const String resumeUrl =
       'https://docs.google.com/document/d/15-ZisTdPMck-sVjmMrU35_Si7q6oKNjcLl7yoah6qF4/edit?usp=sharing';
@@ -22,7 +23,8 @@ class PersonalInfo {
 
 // === Social Links ===
 class SocialLinks {
-  static const String linkedin = 'https://www.linkedin.com/in/woroud-alnaeb/';
+  static const String linkedin =
+      'https://www.linkedin.com/in/woroud-alnaeb/';
   static const String github = 'https://github.com/woroud.alnaeb';
   static const String pubdev =
       'https://pub.dev/publishers/flutterbots.dev/packages';
@@ -106,7 +108,8 @@ class Skill {
   final int level;
   final String years;
 
-  const Skill({required this.name, required this.level, required this.years});
+  const Skill(
+      {required this.name, required this.level, required this.years});
 }
 
 const List<SkillCategory> skillCategories = [
@@ -163,7 +166,8 @@ const List<SkillCategory> skillCategories = [
     skills: [
       Skill(name: 'IoT Integration (NFC/BLE)', level: 85, years: '2'),
       Skill(name: 'Google Maps SDK', level: 90, years: '2+'),
-      Skill(name: 'Offline-First Architecture', level: 90, years: '2+'),
+      Skill(
+          name: 'Offline-First Architecture', level: 90, years: '2+'),
       Skill(name: 'Real-time Sync', level: 85, years: '2+'),
     ],
   ),
@@ -228,8 +232,8 @@ const List<Experience> experiences = [
       'Google Maps SDK',
       'NFC',
       'BLE',
-      'DDD'
-          'OAuth2/SSO',
+      'DDD',
+      'OAuth2/SSO',
     ],
     achievements: [
       'Served 10000+ active users across multiple user roles',
@@ -277,7 +281,14 @@ const List<Experience> experiences = [
     companyUrl: 'https://www.mootawer.com',
     description:
         'Led mobile development team of 5 engineers while delivering multiple production applications and establishing engineering best practices.',
-    technologies: ['Flutter', 'Firebase', 'Mason', 'CI/CD', 'BLoC', 'Riverpod'],
+    technologies: [
+      'Flutter',
+      'Firebase',
+      'Mason',
+      'CI/CD',
+      'BLoC',
+      'Riverpod'
+    ],
     achievements: [
       'Led team to deliver 7+ apps in 16 months',
       'Trained and mentored junior developers to mid-level following my own road map',
@@ -320,7 +331,13 @@ const List<Experience> experiences = [
     companyUrl: '',
     description:
         'Joined as 4th employee in early-stage startup. Built and shipped multiple applications while improving architecture and code quality standards.',
-    technologies: ['Flutter', 'Dart', 'Firebase', 'Provider', 'REST APIs'],
+    technologies: [
+      'Flutter',
+      'Dart',
+      'Firebase',
+      'Provider',
+      'REST APIs'
+    ],
     achievements: [
       'Delivered 4 apps from concept to Play Store',
       'Established coding standards adopted company-wide',
@@ -413,7 +430,6 @@ The system features real-time bus tracking using Google Maps SDK, IoT hardware i
       'Multi countries scale',
       'Attendance accuracy',
       'Offline first',
-
     ],
     links: {},
     status: 'In Development',
@@ -435,7 +451,12 @@ Hapster is an industrial training platform used in manufacturing facilities acro
 I engineered a proprietary online-offline sync service from scratch when existing solutions couldn't meet project requirements.
 ''',
     role: 'Mid Mobile Developer - Sync Architecture Lead',
-    technologies: ['Flutter', 'SQLite', 'Custom Sync Engine', 'REST APIs'],
+    technologies: [
+      'Flutter',
+      'SQLite',
+      'Custom Sync Engine',
+      'REST APIs'
+    ],
     impact: [
       'Deployed across facilities in France',
       'Enabled offline training',
@@ -492,7 +513,11 @@ The app uses clean architecture with Riverpod for state management and supports 
         'Open-source Flutter plugin for beacon technology, enabling proximity-based features in mobile applications.',
     role: 'Creator & Maintainer',
     technologies: ['Flutter', 'Kotlin', 'Swift', 'Platform Channels'],
-    impact: ['Published on pub.dev', 'Used in Me-Mate', 'Community package'],
+    impact: [
+      'Published on pub.dev',
+      'Used in Me-Mate',
+      'Community package'
+    ],
     links: {
       // 'pubdev': 'https://pub.dev/publishers/flutterbots.dev/packages',
       // 'github': 'https://github.com/flutter-bots/beacon_plugin',
@@ -500,30 +525,6 @@ The app uses clean architecture with Riverpod for state management and supports 
     status: 'Active Development',
     year: '2023',
     platforms: ['iOS', 'Android'],
-  ),
-  Project(
-    id: 'memate',
-    title: 'Me-Mate',
-    subtitle: 'Proximity-Based Social Networking',
-    category: 'Social / Networking',
-    thumbnail: Assets.projectsMemate,
-    shortDescription:
-        'Social networking app using beacon technology for proximity-based professional networking.',
-    role: 'Flutter Developer',
-    technologies: [
-      'Flutter',
-      'Beacon Technology',
-      'Google Nearby API',
-      'Firebase',
-    ],
-    impact: ['5K+ downloads', 'Custom beacon plugin', 'Proximity networking'],
-    links: {
-      'playStore':
-          'https://play.google.com/store/apps/details?id=com.elkood.memate',
-    },
-    status: 'Published',
-    year: '2022',
-    platforms: ['Android'],
   ),
   Project(
     id: 'getup',
@@ -535,7 +536,11 @@ The app uses clean architecture with Riverpod for state management and supports 
         'Point of Sale application for educational platform serving high school students.',
     role: 'Flutter Developer',
     technologies: ['Flutter', 'Payment Integration', 'Firebase'],
-    impact: ['POS system', 'Educational platform', 'Published to Play Store'],
+    impact: [
+      'POS system',
+      'Educational platform',
+      'Published to Play Store'
+    ],
     links: {
       'playStore':
           'https://play.google.com/store/apps/details?id=com.elkood.get_up',
@@ -554,8 +559,14 @@ The app uses clean architecture with Riverpod for state management and supports 
         'Social platform for artists in Saudi Arabia to share artwork and discover cultural events.',
     role: 'Flutter Developer',
     technologies: ['Flutter', 'Firebase', 'Image Processing'],
-    impact: ['Social features', 'Event management', 'Saudi Arabia market'],
-    links: {'portfolio': 'https://www.mootawer.com/portfolio/taknikat'},
+    impact: [
+      'Social features',
+      'Event management',
+      'Saudi Arabia market'
+    ],
+    links: {
+      'portfolio': 'https://www.mootawer.com/portfolio/taknikat'
+    },
     status: 'Published',
     year: '2023',
     platforms: ['iOS', 'Android'],
@@ -569,9 +580,19 @@ The app uses clean architecture with Riverpod for state management and supports 
     shortDescription:
         'E-commerce platform with specialized container rental and warehouse management for Saudi Arabia.',
     role: 'Flutter Developer',
-    technologies: ['Flutter', 'Payment Gateway', 'Inventory Management'],
-    impact: ['Container rental', 'Warehouse management', 'Multi-vendor'],
-    links: {'portfolio': 'https://www.mootawer.com/portfolio/mustawdaat'},
+    technologies: [
+      'Flutter',
+      'Payment Gateway',
+      'Inventory Management'
+    ],
+    impact: [
+      'Container rental',
+      'Warehouse management',
+      'Multi-vendor'
+    ],
+    links: {
+      'portfolio': 'https://www.mootawer.com/portfolio/mustawdaat'
+    },
     status: 'Published',
     year: '2023',
     platforms: ['iOS', 'Android'],
@@ -585,8 +606,16 @@ The app uses clean architecture with Riverpod for state management and supports 
     shortDescription:
         'Multi-app restaurant ecosystem including customer ordering, kitchen management, and delivery coordination.',
     role: 'Flutter Developer',
-    technologies: ['Flutter', 'Real-time Updates', 'Location Tracking'],
-    impact: ['Multi-app system', 'Real-time tracking', 'Order management'],
+    technologies: [
+      'Flutter',
+      'Real-time Updates',
+      'Location Tracking'
+    ],
+    impact: [
+      'Multi-app system',
+      'Real-time tracking',
+      'Order management'
+    ],
     links: {
       'playStore':
           'https://play.google.com/store/apps/details?id=com.digitile.baytna_express',
@@ -627,13 +656,43 @@ Key Features:
       'Order tracking system',
     ],
     links: {
-      'appStore': 'https://apps.apple.com/il/app/foodland-najaf/id6477353753',
+      'appStore':
+          'https://apps.apple.com/il/app/foodland-najaf/id6477353753',
       'website': 'https://jacksi.co.uk/project/Food-Land',
     },
     status: 'Published',
     year: '2024',
     platforms: ['iOS'],
   ),
+  Project(
+    id: 'memate',
+    title: 'Me-Mate',
+    subtitle: 'Proximity-Based Social Networking',
+    category: 'Social / Networking',
+    thumbnail: Assets.projectsMemate,
+    shortDescription:
+    'Social networking app using beacon technology for proximity-based professional networking.',
+    role: 'Flutter Developer',
+    technologies: [
+      'Flutter',
+      'Beacon Technology',
+      'Google Nearby API',
+      'Firebase',
+    ],
+    impact: [
+      '5K+ downloads',
+      'Custom beacon plugin',
+      'Proximity networking'
+    ],
+    links: {
+      'playStore':
+      'https://play.google.com/store/apps/details?id=com.elkood.memate',
+    },
+    status: 'Published',
+    year: '2022',
+    platforms: ['Android'],
+  ),
+
 ];
 
 // === Services ===
@@ -718,10 +777,12 @@ class Education {
 
 // === Call to Action ===
 class CallToAction {
-  static const String headline = "Let's Build Something Amazing Together";
+  static const String headline =
+      "Let's Build Something Amazing Together";
   static const String subheadline =
       "I'm currently open to remote opportunities where I can contribute my expertise in Flutter development, system architecture, and team leadership.";
-  static const String availability = 'Available for full-time remote positions';
+  static const String availability =
+      'Available for full-time remote positions';
 
   static const List<String> preferredRoles = [
     'Senior Flutter Engineer',

@@ -10,6 +10,9 @@ abstract class AppColors {
   static const Color primaryCyan = Color(0xFF00D9FF);
   static const Color primaryPink = Color(0xFFFF6B9D);
 
+  // === Brighter accent for better contrast on dark ===
+  static const Color chipPurple = Color(0xFF8B85FF); // Brighter for chips
+
   // === Dark Theme Colors ===
   static const Color darkBackground = Color(0xFF0A0E27);
   static const Color darkSurface = Color(0xFF1A1F3D);
