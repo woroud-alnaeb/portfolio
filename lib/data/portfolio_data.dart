@@ -35,12 +35,12 @@ class SocialLinks {
 // === About ===
 class About {
   static const String shortBio =
-      'Senior Mobile Engineer with 4+ years specializing in Flutter development. Passionate about building scalable, offline-first applications and mentoring developers to achieve technical excellence.';
+      'Senior Mobile Engineer with 5 years specializing in Flutter development. Passionate about building scalable, offline-first applications and mentoring developers to achieve technical excellence.';
 
   static const String longBio = '''
-I'm a Senior Mobile Engineer specializing in Flutter with over 4 years of experience architecting and delivering enterprise-grade mobile applications. My journey began at Elkood as employee #4, where I learned to move fast and deliver quality in a startup environment.
+I'm a Senior Mobile Engineer specializing in Flutter with over 5 years of experience architecting and delivering enterprise-grade mobile applications. My journey began at Elkood as employee #4, where I learned to move fast and deliver quality in a startup environment.
 
-I progressed to Team Lead at Mootawer, managing 5 engineers while building complex systems like custom offline-sync services for industrial platforms in France. Currently, I independently architect Skoohub at CoopatTek - a comprehensive School Management System serving 500+ users.
+I progressed to Team Lead at Mootawer, managing 5 engineers while building complex systems like custom offline-sync services for industrial platforms in France. Currently, I independently architect Skoohub at CoopatTek - a comprehensive School Management System serving many schools.
 
 I'm passionate about clean architecture, performance optimization, and mentoring developers. I've reduced infrastructure costs by 100%, led successful team transformations, and contributed to the Flutter community through open-source packages.
 ''';
@@ -87,7 +87,7 @@ class Stats {
   static const int projectsCompleted = 20;
   static const int appsPublished = 15;
   static const int usersServed = 10000;
-  static const int teamsMentored = 5;
+  static const int teamsMentored = 4;
 }
 
 // === Skills ===
