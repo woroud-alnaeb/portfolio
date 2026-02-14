@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../common/design/design.dart';
 import '../../theme_provider.dart';
@@ -85,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: [
           // Background orbs (only in dark mode for performance)
-          if (isDark) const OrbsBackground(),
+          const OrbsBackground(),
 
           // Main content
           CustomScrollView(

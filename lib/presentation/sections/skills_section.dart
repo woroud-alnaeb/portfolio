@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../../common/design/design.dart';
 import '../../data/portfolio_data.dart';
@@ -49,21 +51,37 @@ class _SkillsSectionState extends State<SkillsSection> {
   }
 
   Widget _buildCategoryTabs(bool isDark, bool isMobile) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: skillCategories.asMap().entries.map((entry) {
-          final isSelected = entry.key == _selectedCategoryIndex;
-          return Padding(
-            padding: const EdgeInsets.only(right: LayoutConstrains.s2),
-            child: _CategoryTab(
-              name: entry.value.name,
-              isSelected: isSelected,
-              isDark: isDark,
-              onTap: () => setState(() => _selectedCategoryIndex = entry.key),
-            ),
-          );
-        }).toList(),
+    return ShaderMask(
+      shaderCallback: (Rect bounds) {
+        return LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Colors.white,
+            Colors.white,
+            Colors.white.withOpacity(0.05),
+          ],
+          stops: const [0.0, 0.8, 1.0],
+        ).createShader(bounds);
+      },
+      blendMode: BlendMode.dstIn,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: LayoutConstrains.s1),
+        child: Row(
+          children: skillCategories.asMap().entries.map((entry) {
+            final isSelected = entry.key == _selectedCategoryIndex;
+            return Padding(
+              padding: const EdgeInsets.only(right: LayoutConstrains.s2),
+              child: _CategoryTab(
+                name: entry.value.name,
+                isSelected: isSelected,
+                isDark: isDark,
+                onTap: () => setState(() => _selectedCategoryIndex = entry.key),
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
@@ -147,27 +165,37 @@ class _CategoryTabState extends State<_CategoryTab> {
             color: widget.isSelected
                 ? null
                 : (_isHovered
-                      ? AppColors.primaryPurple.withOpacity(0.1)
-                      : Colors.transparent),
+                    ? AppColors.primaryPurple.withOpacity(0.1)
+                    : (widget.isDark
+                        ? AppColors.darkCard
+                        : AppColors.lightCard)),
             borderRadius: BorderRadius.circular(PRadius.chip),
             border: Border.all(
               color: widget.isSelected
                   ? Colors.transparent
                   : (widget.isDark
-                        ? AppColors.darkDivider
-                        : AppColors.lightDivider),
+                      ? AppColors.primaryPurple.withOpacity(0.3)
+                      : AppColors.primaryPurple.withOpacity(0.2)),
+              width: 1.5,
             ),
+            boxShadow: widget.isSelected
+                ? [
+                    BoxShadow(
+                      color: AppColors.primaryPurple.withOpacity(0.3),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    )
+                  ]
+                : null,
           ),
           child: Text(
             widget.name,
             style: TextStyle(
               fontSize: 13,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
               color: widget.isSelected
                   ? Colors.white
-                  : (widget.isDark
-                        ? AppColors.darkTextSecondary
-                        : AppColors.lightTextSecondary),
+                  : (widget.isDark ? AppColors.darkText : AppColors.lightText),
             ),
           ),
         ),

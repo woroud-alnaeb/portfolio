@@ -85,51 +85,54 @@ class OrbsBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+    final isMobile = size.width < 600;
+
     return Stack(
       children: [
         // Large purple orb - top right
-        const Positioned(
-          top: -100,
-          right: -100,
+        Positioned(
+          top: isMobile ? -50 : -100,
+          right: isMobile ? -50 : -100,
           child: AnimatedOrb(
-            size: 400,
+            size: isMobile ? 200 : 400,
             colors: AppColors.orbGradient1,
-            duration: Duration(seconds: 10),
+            duration: const Duration(seconds: 10),
           ),
         ),
         // Medium pink orb - bottom left
         Positioned(
           bottom: size.height * 0.2,
-          left: -80,
-          child: const AnimatedOrb(
-            size: 250,
+          left: isMobile ? -40 : -80,
+          child: AnimatedOrb(
+            size: isMobile ? 120 : 250,
             colors: AppColors.orbGradient2,
-            duration: Duration(seconds: 12),
-            offset: Offset(10, 0),
+            duration: const Duration(seconds: 12),
+            offset: const Offset(10, 0),
           ),
         ),
         // Small cyan orb - center right
         Positioned(
           top: size.height * 0.4,
-          right: size.width * 0.1,
-          child: const AnimatedOrb(
-            size: 150,
+          right: size.width * (isMobile ? -0.1 : 0.1),
+          child: AnimatedOrb(
+            size: isMobile ? 80 : 150,
             colors: AppColors.orbGradient3,
-            duration: Duration(seconds: 8),
-            offset: Offset(-5, 10),
+            duration: const Duration(seconds: 8),
+            offset: const Offset(-5, 10),
           ),
         ),
         // Extra small orb - top left
-        Positioned(
-          top: size.height * 0.15,
-          left: size.width * 0.2,
-          child: const AnimatedOrb(
-            size: 100,
-            colors: AppColors.orbGradient1,
-            duration: Duration(seconds: 15),
-            blur: 40,
+        if (!isMobile)
+          Positioned(
+            top: size.height * 0.15,
+            left: size.width * 0.2,
+            child: const AnimatedOrb(
+              size: 100,
+              colors: AppColors.orbGradient1,
+              duration: Duration(seconds: 15),
+              blur: 40,
+            ),
           ),
-        ),
       ],
     );
   }

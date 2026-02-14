@@ -48,14 +48,6 @@ class AboutSection extends StatelessWidget {
               _buildHighlightsGrid(context, isDark, isMobile),
               const SizedBox(height: LayoutConstrains.xl1),
 
-              // Fun facts
-              const SectionTitle(
-                title: 'Fun Facts',
-                useGradient: false,
-                textAlign: TextAlign.left,
-              ),
-              const SizedBox(height: LayoutConstrains.m3),
-              _buildFunFacts(context, isDark),
             ],
           ),
         ),
@@ -125,39 +117,4 @@ class AboutSection extends StatelessWidget {
     );
   }
 
-  Widget _buildFunFacts(BuildContext context, bool isDark) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: About.funFacts.map((fact) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: LayoutConstrains.s3),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: const EdgeInsets.only(top: 8),
-                width: 6,
-                height: 6,
-                decoration: const BoxDecoration(
-                  color: AppColors.primaryCyan,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              const SizedBox(width: LayoutConstrains.m1),
-              Expanded(
-                child: Text(
-                  fact,
-                  style: AppTypo.bodyMedium(context).copyWith(
-                    color: isDark
-                        ? AppColors.darkTextSecondary
-                        : AppColors.lightTextSecondary,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      }).toList(),
-    );
-  }
 }
