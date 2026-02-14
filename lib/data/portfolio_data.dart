@@ -225,8 +225,8 @@ const List<Experience> experiences = [
     description:
         'Independently architecting and developing Skoohub, an enterprise-grade School Management System serving 10000+ users across students, parents, and staff.',
     technologies: [
-      'Firebase (Advanced Firestore, Rules & triggers)'
-          'Google Maps SDK',
+      'Firebase (Advanced Firestore, Rules & triggers)',
+      'Google Maps SDK',
       'Background Fetch',
       'Reactive Forms',
       'NFC/BLE',
