@@ -137,6 +137,167 @@ class _ImageViewerDialog extends StatelessWidget {
   }
 }
 
+void _showProjectDetails(BuildContext context, Project project) {
+  showDialog(
+    context: context,
+    barrierColor: Colors.black87,
+    builder: (context) => _ProjectDetailsDialog(project: project),
+  );
+}
+
+class _ProjectDetailsDialog extends StatelessWidget {
+  final Project project;
+
+  const _ProjectDetailsDialog({required this.project});
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < Breakpoints.tablet;
+
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: EdgeInsets.all(isMobile ? 16 : 32),
+      child: GlassCard(
+        padding: EdgeInsets.zero,
+        child: Stack(
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Header Image
+                SizedBox(
+                  height: isMobile ? 150 : 200,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(PRadius.glass),
+                    ),
+                    child: Image.asset(
+                      project.thumbnail,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                // Content
+                Flexible(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(LayoutConstrains.l1),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          project.title,
+                          style: AppTypo.headlineSmall(context).copyWith(
+                            color: isDark
+                                ? AppColors.darkText
+                                : AppColors.lightText,
+                          ),
+                        ),
+                        const SizedBox(height: LayoutConstrains.s1),
+                        Text(
+                          project.subtitle,
+                          style: AppTypo.bodyMedium(context).copyWith(
+                            color: AppColors.primaryCyan,
+                          ),
+                        ),
+                        const SizedBox(height: LayoutConstrains.m2),
+                        Text(
+                          project.fullDescription ?? project.shortDescription,
+                          style: AppTypo.bodyMedium(context).copyWith(
+                            color: isDark
+                                ? AppColors.darkTextSecondary
+                                : AppColors.lightTextSecondary,
+                            height: 1.6,
+                          ),
+                        ),
+                        const SizedBox(height: LayoutConstrains.l1),
+                        const Divider(color: Colors.white24),
+                        const SizedBox(height: LayoutConstrains.m2),
+
+                        // Technologies
+                        Text(
+                          'Technologies',
+                          style: AppTypo.titleSmall(context).copyWith(
+                            color: isDark
+                                ? AppColors.darkText
+                                : AppColors.lightText,
+                          ),
+                        ),
+                        const SizedBox(height: LayoutConstrains.s2),
+                        Wrap(
+                          spacing: LayoutConstrains.s2,
+                          runSpacing: LayoutConstrains.s2,
+                          children: project.technologies
+                              .map((tech) => SkillChip(name: tech))
+                              .toList(),
+                        ),
+                        const SizedBox(height: LayoutConstrains.l1),
+
+                        // Impact / Highlights
+                        if (project.impact.isNotEmpty) ...[
+                          Text(
+                            'Key Impact',
+                            style: AppTypo.titleSmall(context).copyWith(
+                              color: isDark
+                                  ? AppColors.darkText
+                                  : AppColors.lightText,
+                            ),
+                          ),
+                          const SizedBox(height: LayoutConstrains.s2),
+                          ...project.impact.map((item) => Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(top: 4),
+                                      child: Icon(Icons.check_circle,
+                                          size: 16, color: Colors.green),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Expanded(
+                                      child: Text(
+                                        item,
+                                        style:
+                                            AppTypo.bodySmall(context).copyWith(
+                                          color: isDark
+                                              ? AppColors.darkTextSecondary
+                                              : AppColors.lightTextSecondary,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            // Close Button
+            Positioned(
+              top: 8,
+              right: 8,
+              child: IconButton(
+                onPressed: () => Navigator.of(context).pop(),
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.black54,
+                  foregroundColor: Colors.white,
+                ),
+                icon: const Icon(Icons.close),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection({super.key});
 
@@ -394,8 +555,8 @@ class _FeaturedProjectCard extends StatelessWidget {
                 ? AppColors.darkTextSecondary
                 : AppColors.lightTextSecondary,
           ),
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
+          maxLines: isMobile ? null : 3,
+          overflow: isMobile ? null : TextOverflow.ellipsis,
         ),
         const SizedBox(height: LayoutConstrains.m1),
 
@@ -464,6 +625,13 @@ class _FeaturedProjectCard extends StatelessWidget {
                 icon: FontAwesomeIcons.globe,
                 onTap: () => _launchUrl(project.links['website']),
               ),
+
+            // Read More Button
+            _LinkButton(
+              icon: Icons.read_more,
+              onTap: () => _showProjectDetails(context, project),
+            ),
+
             const Spacer(),
             // Status
             Container(
@@ -623,7 +791,7 @@ class _ProjectCardState extends State<_ProjectCard> {
                               ? AppColors.darkTextSecondary
                               : AppColors.lightTextSecondary,
                         ),
-                        maxLines: 3,
+                        maxLines: 4,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -650,6 +818,17 @@ class _ProjectCardState extends State<_ProjectCard> {
                             color: widget.isDark
                                 ? AppColors.darkTextSecondary
                                 : AppColors.lightTextSecondary,
+                          ),
+                        ),
+                        // Read More Icon
+                        const SizedBox(width: 8),
+                        GestureDetector(
+                          onTap: () =>
+                              _showProjectDetails(context, widget.project),
+                          child: Icon(
+                            Icons.read_more,
+                            size: 16,
+                            color: AppColors.primaryCyan,
                           ),
                         ),
                       ],

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import '../../common/design/design.dart';
 import '../../data/portfolio_data.dart';
@@ -13,6 +11,41 @@ class SkillsSection extends StatefulWidget {
 
 class _SkillsSectionState extends State<SkillsSection> {
   int _selectedCategoryIndex = 0;
+  final ScrollController _scrollController = ScrollController();
+  final Map<int, GlobalKey> _categoryKeys = {};
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToCategory(int index) {
+    final key = _categoryKeys[index];
+    if (key?.currentContext != null) {
+      Scrollable.ensureVisible(
+        key!.currentContext!,
+        duration: const Duration(milliseconds: 300),
+        alignment: 0.5,
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
+  void _onSwipe(bool isRight) {
+    setState(() {
+      if (isRight) {
+        if (_selectedCategoryIndex > 0) {
+          _selectedCategoryIndex--;
+        }
+      } else {
+        if (_selectedCategoryIndex < skillCategories.length - 1) {
+          _selectedCategoryIndex++;
+        }
+      }
+      _scrollToCategory(_selectedCategoryIndex);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,18 +99,26 @@ class _SkillsSectionState extends State<SkillsSection> {
       },
       blendMode: BlendMode.dstIn,
       child: SingleChildScrollView(
+        controller: _scrollController,
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: LayoutConstrains.s1),
         child: Row(
           children: skillCategories.asMap().entries.map((entry) {
             final isSelected = entry.key == _selectedCategoryIndex;
+            if (!_categoryKeys.containsKey(entry.key)) {
+              _categoryKeys[entry.key] = GlobalKey();
+            }
             return Padding(
+              key: _categoryKeys[entry.key],
               padding: const EdgeInsets.only(right: LayoutConstrains.s2),
               child: _CategoryTab(
                 name: entry.value.name,
                 isSelected: isSelected,
                 isDark: isDark,
-                onTap: () => setState(() => _selectedCategoryIndex = entry.key),
+                onTap: () {
+                  setState(() => _selectedCategoryIndex = entry.key);
+                  _scrollToCategory(entry.key);
+                },
               ),
             );
           }).toList(),
@@ -89,28 +130,39 @@ class _SkillsSectionState extends State<SkillsSection> {
   Widget _buildSkillsGrid(bool isDark, bool isMobile) {
     final category = skillCategories[_selectedCategoryIndex];
 
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 300),
-      child: GridView.builder(
-        key: ValueKey(_selectedCategoryIndex),
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: isMobile ? 1 : 2,
-          mainAxisSpacing: LayoutConstrains.m3,
-          crossAxisSpacing: LayoutConstrains.l1,
-          mainAxisExtent: 70,
+    return GestureDetector(
+      onHorizontalDragEnd: (details) {
+        if (details.primaryVelocity! > 0) {
+          // Swipe Right -> Previous
+          _onSwipe(true);
+        } else if (details.primaryVelocity! < 0) {
+          // Swipe Left -> Next
+          _onSwipe(false);
+        }
+      },
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: GridView.builder(
+          key: ValueKey(_selectedCategoryIndex),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: isMobile ? 1 : 2,
+            mainAxisSpacing: LayoutConstrains.m3,
+            crossAxisSpacing: LayoutConstrains.l1,
+            mainAxisExtent: 70,
+          ),
+          itemCount: category.skills.length,
+          itemBuilder: (context, index) {
+            final skill = category.skills[index];
+            return SkillBar(
+              name: skill.name,
+              level: skill.level,
+              years: skill.years,
+              color: _getSkillColor(index),
+            );
+          },
         ),
-        itemCount: category.skills.length,
-        itemBuilder: (context, index) {
-          final skill = category.skills[index];
-          return SkillBar(
-            name: skill.name,
-            level: skill.level,
-            years: skill.years,
-            color: _getSkillColor(index),
-          );
-        },
       ),
     );
   }

@@ -460,8 +460,8 @@ The application is architected to function seamlessly in zero-connectivity zones
       'Reactive Forms'
     ],
     impact: [
-      'Deployed across facilities in France'
-          'Engineered offline-first sync engine',
+      'Deployed across facilities in France',
+      'Engineered offline-first sync engine',
       'Built custom Windows screen recorder',
       'Implemented digital signatures workflow',
     ],
