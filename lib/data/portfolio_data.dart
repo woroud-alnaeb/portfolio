@@ -38,11 +38,7 @@ class About {
       'Senior Mobile Engineer with 5 years specializing in Flutter development. Passionate about building scalable, offline-first applications and mentoring developers to achieve technical excellence.';
 
   static const String longBio = '''
-I'm a Senior Mobile Engineer specializing in Flutter with over 5 years of experience architecting and delivering enterprise-grade mobile applications. My journey began at Elkood as employee #4, where I learned to move fast and deliver quality in a startup environment.
-
-I progressed to Team Lead at Mootawer, managing 5 engineers while building complex systems like custom offline-sync services for industrial platforms in France. Currently, I independently architect Skoohub at CoopatTek - a comprehensive School Management System serving many schools.
-
-I'm passionate about clean architecture, performance optimization, and mentoring developers. I've reduced infrastructure costs by 100%, led successful team transformations, and contributed to the Flutter community through open-source packages.
+I am a Senior Mobile Engineer with a systems-driven mindset, focused on building scalable, maintainable, and reliable mobile platforms across iOS, Android, and web. I prioritize architectural clarity, strong state management, and well-defined domain boundaries to ensure systems remain robust as they grow. My expertise includes Flutter, native mobile technologies, advanced backend integration, real-time synchronization, and hardware interfaces such as BLE and NFC. I design solutions that balance performance, cost efficiency, and long-term sustainability. Beyond implementation, I establish engineering standards, mentor developers, and foster structured problem-solving. I build software with the perspective of an engineer responsible for its evolution, not just its release.
 ''';
 
   static const List<Map<String, String>> highlights = [
@@ -73,7 +69,6 @@ I'm passionate about clean architecture, performance optimization, and mentoring
   ];
 
   static const List<String> funFacts = [
-    'Started coding journey in 2021 at a 4-person startup',
     'Created beacon_plugin used by Flutter community',
     'Reduced a company\'s cloud costs to \$0 (and they were happy about it!)',
     'Mentored 3 developers who are now mid-level engineers',
@@ -87,7 +82,7 @@ class Stats {
   static const int projectsCompleted = 20;
   static const int appsPublished = 15;
   static const int usersServed = 10000;
-  static const int teamsMentored = 4;
+  static const int teamsMentored = 5;
 }
 
 // === Skills ===
@@ -141,6 +136,7 @@ const List<SkillCategory> skillCategories = [
       Skill(name: 'Firebase', level: 90, years: '4+'),
       Skill(name: 'Firestore', level: 90, years: '3+'),
       Skill(name: 'SQLite', level: 85, years: '3+'),
+      Skill(name: 'SQL', level: 70, years: '2+'),
       Skill(name: 'REST APIs', level: 90, years: '4+'),
       Skill(name: 'OAuth2/SSO', level: 85, years: '2+'),
     ],
@@ -153,6 +149,7 @@ const List<SkillCategory> skillCategories = [
       Skill(name: 'Azure DevOps', level: 80, years: '1'),
       Skill(name: 'CI/CD', level: 85, years: '3+'),
       Skill(name: 'Agile/Scrum', level: 90, years: '3+'),
+      Skill(name: 'Linux', level: 75, years: '2+'),
       Skill(
         name: 'Unit/Widget/Integration Testing',
         level: 85,
@@ -169,6 +166,8 @@ const List<SkillCategory> skillCategories = [
       Skill(
           name: 'Offline-First Architecture', level: 90, years: '2+'),
       Skill(name: 'Real-time Sync', level: 85, years: '2+'),
+      Skill(name: 'Computer Vision', level: 60, years: '1'),
+      Skill(name: 'AI Integration', level: 70, years: '1+'),
     ],
   ),
 ];
@@ -226,19 +225,16 @@ const List<Experience> experiences = [
     description:
         'Independently architecting and developing Skoohub, an enterprise-grade School Management System serving 10000+ users across students, parents, and staff.',
     technologies: [
-      'Flutter',
-      'Firebase',
-      'Firestore',
-      'Google Maps SDK',
-      'NFC',
-      'BLE',
-      'DDD',
+      'Firebase (Advanced Firestore, Rules & triggers)'
+          'Google Maps SDK',
+      'Background Fetch',
+      'Reactive Forms',
+      'NFC/BLE',
       'OAuth2/SSO',
     ],
     achievements: [
-      'Served 10000+ active users across multiple user roles',
+      'A system that serves schools with different administrative structures and varying operational preferences',
       'Published to App Store, TestFlight, and Google Play',
-      'Zero downtime deployment strategy',
     ],
     highlights: [
       {
@@ -287,7 +283,7 @@ const List<Experience> experiences = [
       'Mason',
       'CI/CD',
       'BLoC',
-      'Riverpod'
+      'Riverpod',
     ],
     achievements: [
       'Led team to deliver 7+ apps in 16 months',
@@ -335,20 +331,19 @@ const List<Experience> experiences = [
       'Flutter',
       'Dart',
       'Firebase',
-      'Provider',
+      'Provider/BloC',
       'REST APIs'
     ],
     achievements: [
       'Delivered 4 apps from concept to Play Store',
-      'Established coding standards adopted company-wide',
       'Created 3 internal packages still in use',
     ],
     highlights: [
       {
-        'icon': '🚀',
-        'title': 'Startup Foundation',
+        'icon': '📍',
+        'title': 'Near By',
         'description':
-            'Joined as employee #4 in early-stage startup environment',
+            'Developed Near By service allows apps to easily discover, connect to, and exchange data with nearby devices in real-time',
       },
       {
         'icon': '📱',
@@ -402,70 +397,78 @@ const List<Project> projects = [
   Project(
     id: 'skoohub',
     title: 'Skoohub',
-    subtitle: 'Enterprise School Management System',
-    category: 'Enterprise / Education',
+    subtitle: 'IoT-Enabled School Ecosystem',
+    category: 'Enterprise / IoT / Education',
     thumbnail: Assets.projectsSkoohub,
     shortDescription:
-        'Comprehensive school management ecosystem with real-time tracking, IoT integration, and offline-first architecture serving 500+ users.',
+        'Mission-critical school ecosystem integrating BLE/NFC hardware for real-time student safety and offline-first architecture.',
     fullDescription: '''
-Skoohub is an enterprise-grade School Management System that provides a centralized ecosystem for students, parents, and staff to manage academics, transportation, communication, and administrative workflows.
+Skoohub is an enterprise-grade School Management System engineered to bridge the physical and digital worlds of education. Unlike standard admin platforms, it integrates directly with custom IoT hardware to automate critical safety workflows.
 
-The system features real-time bus tracking using Google Maps SDK, IoT hardware integration (NFC/BLE) for attendance, offline-first architecture, and multi-role authentication. Through strategic data optimization, I reduced cloud costs from \$100/month to \$0 while improving system performance.
+Key Technical Achievements:
+*   IoT & Hardware Integration: Developed a custom communication layer for BLE Beacons (automated classroom attendance) and NFC Tags (real-time bus passenger tracking), processing hardware signals directly on the mobile device.
+*   Offline-First Architecture: Architected a robust synchronization engine using background_fetch and local storage. This ensures teachers can grade exams and take attendance without internet, with distinct data automatically syncing when connectivity is restored.
+*   Complex State & Navigation: Utilized Flutter BLoC and Clean Architecture to manage dynamic user roles (Admin, Teacher, Parent, Student), creating four distinct app experiences from a single codebase.
+*   Performance: Optimized Firestore reads/writes to reduce cloud infrastructure costs to near-zero while supporting multi-country scaling.
 ''',
-    role: 'Senior Mobile Engineer - Solo Developer',
+    role: 'Lead Full-Stack Mobile Engineer',
     technologies: [
       'Flutter',
-      'Firebase',
-      'Firestore',
+      'Dart',
+      'Firebase (Firestore/Functions)',
+      'BLE & NFC (Hardware)',
       'Google Maps SDK',
-      'NFC',
-      'BLE',
-      'OAuth2',
-      'BLE',
-      'TDD',
-      'Testing',
+      'Offline-Sync / Background Fetch',
+      'Flutter BLoC',
+      'Clean Architecture',
+      'Reactive Forms',
+      'CI/CD & Testing',
     ],
     impact: [
-      'Enterprise level',
-      'Multi countries scale',
-      'Attendance accuracy',
-      'Offline first',
+      'Automated Hardware Tracking',
+      '100% Offline Relaibility',
+      'Real-time Student Safety',
+      'Multi-Tenant Scalability',
+      'Cost-Optimized Backend',
     ],
     links: {},
-    status: 'In Development',
+    status: 'In Production',
     year: '2026',
-    platforms: ['iOS', 'Android'],
+    platforms: ['iOS', 'Android', 'Web'],
     isFeatured: true,
   ),
   Project(
     id: 'hapster',
     title: 'Hapster',
-    subtitle: 'Industrial Training Platform',
+    subtitle: 'Industrial Skills & Training Platform',
     category: 'Enterprise / Industrial',
     thumbnail: Assets.projectsHapster,
     shortDescription:
         'Large-scale industrial training system with custom offline-sync architecture deployed across facilities in France.',
     fullDescription: '''
-Hapster is an industrial training platform used in manufacturing facilities across France. The system operates in environments with unreliable internet connectivity, requiring sophisticated offline-first architecture and custom synchronization logic.
+Hapster is a comprehensive training management platform designed for industrial environments. It enables the creation, tracking, and validation of employee skills through a strict compliance workflow involving trainers, trainees, and supervisors.
 
-I engineered a proprietary online-offline sync service from scratch when existing solutions couldn't meet project requirements.
+The application is architected to function seamlessly in zero-connectivity zones. I engineered a robust offline-sync engine using Hive (NoSQL) and Workmanager that handles complex relational data synchronization and conflict resolution for thousands of skill records 'Deployed across facilities in France'.
 ''',
-    role: 'Mid Mobile Developer - Sync Architecture Lead',
+    role: 'Mid-Senior Flutter Developer',
     technologies: [
       'Flutter',
-      'SQLite',
+      'Hive/NoSQL',
+      'Workmanager',
       'Custom Sync Engine',
-      'REST APIs'
+      'Bloc/Cubit',
+      'Reactive Forms'
     ],
     impact: [
-      'Deployed across facilities in France',
-      'Enabled offline training',
-      'Near-zero data loss',
+      'Deployed across facilities in France'
+          'Engineered offline-first sync engine',
+      'Built custom Windows screen recorder',
+      'Implemented digital signatures workflow',
     ],
     links: {'website': 'https://www.hapster.io'},
     status: 'In Production',
     year: '2023',
-    platforms: ['iOS', 'Android'],
+    platforms: ['iOS', 'Android', 'Windows'],
     isFeatured: true,
   ),
   Project(
@@ -485,7 +488,7 @@ The app uses clean architecture with Riverpod for state management and supports 
     technologies: [
       'Flutter',
       'Firebase',
-      'Riverpod',
+      'Cloud fuctions',
       'Clean Architecture',
       'Hive',
       'OAuth2',
@@ -671,7 +674,7 @@ Key Features:
     category: 'Social / Networking',
     thumbnail: Assets.projectsMemate,
     shortDescription:
-    'Social networking app using beacon technology for proximity-based professional networking.',
+        'Social networking app using beacon technology for proximity-based professional networking.',
     role: 'Flutter Developer',
     technologies: [
       'Flutter',
@@ -686,13 +689,12 @@ Key Features:
     ],
     links: {
       'playStore':
-      'https://play.google.com/store/apps/details?id=com.elkood.memate',
+          'https://play.google.com/store/apps/details?id=com.elkood.memate',
     },
     status: 'Published',
     year: '2022',
     platforms: ['Android'],
   ),
-
 ];
 
 // === Services ===
